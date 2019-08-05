@@ -57,7 +57,7 @@ jobs:
           command: |
             . myenv/bin/activate
             pip install twine
-            twine upload dist/*
+            twine upload --skip-existing ./dist/*
       
       - add_ssh_keys:
           fingerprints:
@@ -68,4 +68,4 @@ jobs:
           command: |
             . myenv/bin/activate
             pip install ansible
-            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts.yml ansible/playbook.yml
+            ansible-playbook -i ansible/hosts.yml ansible/playbook.yml
