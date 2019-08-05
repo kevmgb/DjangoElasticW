@@ -48,6 +48,8 @@ jobs:
             echo -e "username = kevinlm" >> ~/.pypirc
             echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc      
 
+      - add_ssh_keys
+
       - run:
           name: create packages
           command: |
