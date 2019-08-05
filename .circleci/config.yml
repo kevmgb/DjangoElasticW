@@ -77,4 +77,4 @@ jobs:
           command: |
             . myenv/bin/activate
             pip install ansible
-            ansible-playbook -i ansible/hosts.yml ansible/playbook.yml
+            ansible-playbook -i ansible/hosts.yml ansible/playbook.yml -vvv
