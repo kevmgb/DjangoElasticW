@@ -4,8 +4,8 @@ jobs:
   build:
     docker:
       - image: circleci/python:3
-        environment:
-          ANSIBLE_HOST_KEY_CHECKING: False
+        # environment:
+        #   ANSIBLE_HOST_KEY_CHECKING: False
 
       - image: circleci/postgres:9.5-alpine
         environment:
@@ -14,8 +14,8 @@ jobs:
           POSTGRES_PASSWORD: libdb
           
 
-    environment:
-      -ANSIBLE_HOST_KEY_CHECKING: False
+    # environment:
+    #   -ANSIBLE_HOST_KEY_CHECKING: False
     
       working_directory: ~/repo
 
