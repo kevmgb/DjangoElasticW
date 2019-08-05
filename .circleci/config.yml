@@ -61,9 +61,15 @@ jobs:
             pip install twine
             twine upload --skip-existing ./dist/*
       
-      # - add_ssh_keys:
-      #     fingerprints:
-      #         - "bd:87:37:a8:3c:4e:46:83:d8:e6:b7:ff:b3:79:a5:06"
+
+      - run:
+          name: resolve host name
+          command: |
+            ssh-keyscan 34.68.227.18 >> ~/.ssh/known_hosts
+
+      - add_ssh_keys:
+          fingerprints:
+              - "bd:87:37:a8:3c:4e:46:83:d8:e6:b7:ff:b3:79:a5:06"
      
       - run:
           name: executing ansible to a remote server
