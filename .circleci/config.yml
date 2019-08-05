@@ -14,8 +14,7 @@ jobs:
           POSTGRES_PASSWORD: libdb
           
 
-    # environment:
-    #   -ANSIBLE_HOST_KEY_CHECKING: False
+    
     
       working_directory: ~/repo
 
