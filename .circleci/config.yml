@@ -57,7 +57,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-              - "bd:87:37:a8:3c:4e:46:83:d8:e6:b7:ff:b3:79:a5:06"
+              - "86:65:f4:ef:e4:80:cf:20:ea:12:42:ad:6f:ed:78:52"
      
       - run:
           name: executing ansible to a remote server
