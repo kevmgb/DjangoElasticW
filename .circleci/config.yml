@@ -29,13 +29,13 @@ jobs:
             pip install tox
             
       # Step 3: run linter and tests (will all be run by tox command)
-      - run:
-          name: run tests
-          command: |          
-            # Run tox
-            . myenv/bin/activate
-            # Whenever we change the project dependencies we have to tell tox to recreate our environments 
-            tox --recreate # Force tox to recreate the venv
+      # - run:
+      #     name: run tests
+      #     command: |          
+      #       # Run tox
+      #       . myenv/bin/activate
+      #       # Whenever we change the project dependencies we have to tell tox to recreate our environments 
+      #       tox --recreate # Force tox to recreate the venv
 
       - run:
           name: init .pypirc
@@ -67,5 +67,5 @@ jobs:
           command: |
             . myenv/bin/activate
             pip install ansible
-            ansible -m ping 34.68.227.18
+            ansible -m ping server.kevo.online -vvv
             ansible-playbook -i ansible/hosts.yml ansible/playbook.yml -vvv
