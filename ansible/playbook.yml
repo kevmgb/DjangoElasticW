@@ -18,11 +18,11 @@
           name: nginx
           state: started
 
-    # - name: Copy .env file
-    #   copy:
-    #     src: /home/kevin/Documents/LibraryApp/LibAppDjango/.env
-    #     dest: /home/kevin/LibAppServ/
-    #     remote_src: yes
+    - name: Copy .env file
+      copy:
+        src: /home/kevin/Documents/LibraryApp/LibAppDjango/.env
+        dest: /home/kevin/LibAppServ/
+        remote_src: yes
     
     - name: Create Database
       become_user: postgres
