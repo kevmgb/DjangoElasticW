@@ -23,6 +23,11 @@
         src: .env
         dest: /home/kevin/LibAppServ/
     
+    - name: fix pkg
+      pip: 
+        name: setuptools 
+        state: latest
+
     - name: Install virtualenv
       pip: name=virtualenv executable=pip3
       
