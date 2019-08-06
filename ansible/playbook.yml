@@ -45,7 +45,10 @@
       pip: name=gunicorn virtualenv=/home/kevin/LibAppServ/myenv
 
     - name: Pip install psycopg2
-      pip: name=psycopg2 virtualenv=/home/kevin/LibAppServ/myenv
+      pip: 
+        name: psycopg2 
+        virtualenv: /home/kevin/LibAppServ/myenv
+        state: latest
 
     - name: Pip install whitenoise
       pip: name=whitenoise virtualenv=/home/kevin/LibAppServ/myenv
