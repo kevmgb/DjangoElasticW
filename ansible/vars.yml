@@ -2,7 +2,7 @@
 
 POSTGRES_DB: libdb
 POSTGRES_USER: postgres
-POSTGRES_PASSWORD: libdb
+POSTGRES_PASSWORD: password
 
 system_packages:
   - postgresql
