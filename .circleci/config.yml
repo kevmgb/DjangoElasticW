@@ -68,4 +68,4 @@ jobs:
             . myenv/bin/activate
             pip install ansible
             ansible -m ping server.kevo.online -vvv
-            ansible-playbook -i ansible/hosts ansible/playbook.yml -vvv
+            # ansible-playbook -i ansible/hosts ansible/playbook.yml -vvv
