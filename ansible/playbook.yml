@@ -50,101 +50,101 @@
         virtualenv: /home/kevin/LibAppServ/myenv
         state: latest
     
-    - name: Pip install gunicorn
-      pip: name=gunicorn virtualenv=/home/kevin/LibAppServ/myenv
+    # - name: Pip install gunicorn
+    #   pip: name=gunicorn virtualenv=/home/kevin/LibAppServ/myenv
 
-    - name: Pip install psycopg2
-      pip: 
-        name: psycopg2 
-        virtualenv: /home/kevin/LibAppServ/myenv
-        state: latest
+    # - name: Pip install psycopg2
+    #   pip: 
+    #     name: psycopg2 
+    #     virtualenv: /home/kevin/LibAppServ/myenv
+    #     state: latest
 
-    - name: Pip install psycopg2-binary
-      pip: 
-        name: psycopg2-binary 
-        virtualenv: /home/kevin/LibAppServ/myenv
-        state: latest
+    # - name: Pip install psycopg2-binary
+    #   pip: 
+    #     name: psycopg2-binary 
+    #     virtualenv: /home/kevin/LibAppServ/myenv
+    #     state: latest
 
-    - name: Pip install whitenoise
-      pip: name=whitenoise virtualenv=/home/kevin/LibAppServ/myenv
+    # - name: Pip install whitenoise
+    #   pip: name=whitenoise virtualenv=/home/kevin/LibAppServ/myenv
     
-    - name: Create Database
-      become: true
-      become_user: root
-      postgresql_db: name={{ POSTGRES_DB }}
+    # - name: Create Database
+    #   become: true
+    #   become_user: root
+    #   postgresql_db: name={{ POSTGRES_DB }}
       
-    - name: Create Database user
-      become_user: postgres
-      postgresql_user: db={{ POSTGRES_DB }} name={{ POSTGRES_USER }} password={{ POSTGRES_PASSWORD }}
+    # - name: Create Database user
+    #   become_user: postgres
+    #   postgresql_user: db={{ POSTGRES_DB }} name={{ POSTGRES_USER }} password={{ POSTGRES_PASSWORD }}
 
-    - name: Perform migration
-      shell: |
-        . myenv/bin/activate
-        docs_app migrate
-      args:
-        chdir: /home/kevin/LibAppServ/
+    # - name: Perform migration
+    #   shell: |
+    #     . myenv/bin/activate
+    #     docs_app migrate
+    #   args:
+    #     chdir: /home/kevin/LibAppServ/
 
-    - name: Copy nginx conf file
-      copy:
-        src: /home/kevin/Documents/LibraryApp/LibAppDjango/confdns
-        dest: /etc/nginx/sites-available/
+    # - name: Copy nginx conf file
+    #   copy:
+    #     src: /home/kevin/Documents/LibraryApp/LibAppDjango/confdns
+    #     dest: /etc/nginx/sites-available/
 
-    - name: Create Symbolic link
-      file:
-        src: confdns
-        dest: /etc/nginx/sites-enabled/default
-        state: link
+    # - name: Create Symbolic link
+    #   file:
+    #     src: confdns
+    #     dest: /etc/nginx/sites-enabled/default
+    #     state: link
     
-    - name: Restart nginx to make changes
-      service:
-        name: nginx
-        state: restarted
+    # - name: Restart nginx to make changes
+    #   service:
+    #     name: nginx
+    #     state: restarted
 
-    - name: start gunicorn
-      shell: |
-        . myenv/bin/activate
-        gunicorn --daemon --workers 3 --bind unix:/home/kevin/LibAppServ/LibAppServ.sock locallibrary.wsgi
-      args:
-        chdir: /home/kevin/LibAppServ/
+    # - name: start gunicorn
+    #   shell: |
+    #     . myenv/bin/activate
+    #     gunicorn --daemon --workers 3 --bind unix:/home/kevin/LibAppServ/LibAppServ.sock locallibrary.wsgi
+    #   args:
+    #     chdir: /home/kevin/LibAppServ/
 
-    - name: Add Certbot
-      apt_repository:
-        repo: 'ppa:certbot/certbot'
-        state: present
-        update-cache: yes
+    # - name: Add Certbot
+    #   apt_repository:
+    #     repo: 'ppa:certbot/certbot'
+    #     state: present
+    #     update-cache: yes
 
-    - name: Install python-certbot
-      apt: name=python-certbot-nginx state=present
+    # - name: Install python-certbot
+    #   apt: name=python-certbot-nginx state=present
 
-    - name: Stop nginx to open port 80
-      service:
-        name: nginx
-        state: stopped
+    # - name: Stop nginx to open port 80
+    #   service:
+    #     name: nginx
+    #     state: stopped
     
-    - name: Enable https
-      shell:
-        certbot --nginx --noninteractive --agree-tos --email kithinjimkevin@gmail.com -d server.kevo.online    
-      become: yes
+    # - name: Enable https
+    #   shell:
+    #     certbot --nginx --noninteractive --agree-tos --email kithinjimkevin@gmail.com -d server.kevo.online    
+    #   become: yes
         
-    - name: Allow UFW
-      ufw:
-        state: enabled
+    # - name: Allow UFW
+    #   ufw:
+    #     state: enabled
 
-    - name: Allow OpenSSH
-      ufw:
-        rule: allow
-        name: OpenSSH
+    # - name: Allow OpenSSH
+    #   ufw:
+    #     rule: allow
+    #     name: OpenSSH
 
-    - name: Allow Nginx Full
-      ufw:
-        rule: allow
-        name: Nginx Full
+    # - name: Allow Nginx Full
+    #   ufw:
+    #     rule: allow
+    #     name: Nginx Full
 
-    - name: Free port 80
-      shell: 
-        fuser -k 80/tcp
+    # - name: Free port 80
+    #   shell: 
+    #     fuser -k 80/tcp
 
-    - name: Restart nginx to make changes
-      service:
-        name: nginx
-        state: restarted
+    # - name: Restart nginx to make changes
+    #   service:
+    #     name: nginx
+    #     state: restarted
