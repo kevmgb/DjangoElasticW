@@ -67,5 +67,5 @@ jobs:
           command: |
             . myenv/bin/activate
             pip install ansible
-            ansible -m ping all -vvv
+            ansible -m ping web-server -vvv
             # ansible-playbook -i ansible/hosts ansible/playbook.yml -vvv
