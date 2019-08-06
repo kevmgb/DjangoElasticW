@@ -23,6 +23,9 @@
         src: .env
         dest: /home/kevin/LibAppServ/
     
+    - name: Install virtualenv
+      pip: name=psycopg2 executable=pip3
+
     - name: Create Database
       become: true
       become_user: root
