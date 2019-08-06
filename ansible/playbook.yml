@@ -20,7 +20,7 @@
 
     - name: Copy .env file
       copy:
-        src: /home/kevin/Documents/LibraryApp/LibAppDjango/.env
+        src: .env
         dest: /home/kevin/LibAppServ/
         remote_src: yes
         owner: "root"
