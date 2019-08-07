@@ -40,7 +40,6 @@
         src: .env
         dest: /home/kevin/LibAppServ/
     
-    
     - name: Install virtualenv
       pip: name=virtualenv executable=pip
       
