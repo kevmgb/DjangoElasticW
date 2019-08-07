@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='LibraryApp',
-    version='3.0.8',
+    version='3.0.9',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
@@ -33,6 +33,7 @@ setup(
         'psycopg2==2.8.3',
         'social-auth-app-django==3.1.0',
         'whitenoise==4.1.3',
+        'django-environ==0.4.5',
     ],
     scripts=[
         "bin/locallibrary_app"

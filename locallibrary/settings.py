@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env('.env')
 
 # pg 96
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,17 +33,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # used to provide cryptographic signing, and should be set to a unique, unpredictable value.
 
 
-# SECRET_KEY = 'b26n4h!9rx@&i3f127v-h56+ga0j44m%s$ij$e-ribzinq%@+9'
-
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'b26n4h!9rx@&i3f127v-h56+ga0j44m%s$ij$e-ribzinq%@+9')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
 
-# The value of the DEBUG will be True by default, but will only be False if the value of the DJANGO_DEBUG 
-# environment variable is set to False.
-
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = True
 
 # host/domain names that this Django site can serve
 ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','lib-app-django.herokuapp.com','server.kevo.online','www.kevo.online']
