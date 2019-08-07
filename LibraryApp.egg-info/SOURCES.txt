@@ -1,7 +1,27 @@
+.coverage
+.coveragerc
+.env
+.gitignore
+=2.10.5
+=2.10.5,
+Dockerfile
 LICENSE
 MANIFEST.in
+Procfile
 README.md
+celerybeat-schedule
+citestrun.yml
+confdns
+db.json
+db.sqlite3
+docker-compose.yml
+manage.py
+notes.txt
+requirements.txt
+runtime.txt
 setup.py
+testconfdns
+tox.ini
 LibraryApp.egg-info/PKG-INFO
 LibraryApp.egg-info/SOURCES.txt
 LibraryApp.egg-info/dependency_links.txt
@@ -48,6 +68,8 @@ catalog/templates/catalog/bookinstance_list_borrowed_user.html
 catalog/templates/catalog/periodic_email_body.html
 catalog/templates/catalog/periodic_email_subject.html
 catalog/templates/catalog/{{ book.get_absolute_url }}
+catalog/templates/registration/logged_out.html
+catalog/templates/registration/login.html
 catalog/tests/__init__.py
 catalog/tests/test_forms.py
 catalog/tests/test_models.py
@@ -84,10 +106,3 @@ locallibrary/celery.py
 locallibrary/settings.py
 locallibrary/urls.py
 locallibrary/wsgi.py
-templates/registration/logged_out.html
-templates/registration/login.html
-templates/registration/password_reset-done.html
-templates/registration/password_reset_complete.html
-templates/registration/password_reset_confirm.html
-templates/registration/password_reset_email.html
-templates/registration/password_reset_form.html

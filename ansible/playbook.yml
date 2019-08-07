@@ -46,26 +46,11 @@
       
     - name: Deploy from pip registry to virtualenv
       pip: 
-        name: LibraryApp==3.0.2
+        name: LibraryApp==3.0.8
         virtualenv: /home/kevin/LibAppServ/myenv
     
     - name: Pip install gunicorn
       pip: name=gunicorn virtualenv=/home/kevin/LibAppServ/myenv
-
-    - name: Pip install psycopg2
-      pip: 
-        name: psycopg2 
-        virtualenv: /home/kevin/LibAppServ/myenv
-        state: latest
-
-    - name: Pip install psycopg2-binary
-      pip: 
-        name: psycopg2-binary 
-        virtualenv: /home/kevin/LibAppServ/myenv
-        state: latest
-
-    - name: Pip install whitenoise
-      pip: name=whitenoise virtualenv=/home/kevin/LibAppServ/myenv
     
     - name: Create Database
       become: true
@@ -75,11 +60,6 @@
     - name: Create Database user
       become_user: postgres
       postgresql_user: db={{ POSTGRES_DB }} name={{ POSTGRES_USER }} password={{ POSTGRES_PASSWORD }}
-    
-    - name: Pip install psycopg2
-      pip: 
-        name: psycopg2 
-        virtualenv: /home/kevin/LibAppServ/myenv
 
     - name: Perform migration
       shell: |
