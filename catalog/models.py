@@ -8,6 +8,9 @@ import uuid  # Required for unique book instances
 from datetime import date
 # Required to assign User as a borrower
 from django.contrib.auth.models import User
+from .search import AuthorIndex
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 class Genre(models.Model):
@@ -116,6 +119,19 @@ class Author(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('died', null=True, blank=True)
 
+    # Method for indexing the model
+    # Add the indexing method to the Author model
+    
+    def indexing(self):
+        obj = AuthorIndex(
+            meta={'id': self.id},
+            first_name=self.first_name,
+            last_name=self.last_name,
+            date_of_birth=self.date_of_birth,
+        )
+        obj.save(index='author-index')
+        return obj.to_dict(include_meta=True)
+
     class Meta:
         ordering = ['last_name', 'first_name']
 
@@ -126,3 +142,7 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return '{0}, {1}'.format(self.last_name, self.first_name)
+
+@receiver(post_save, sender=Author)
+def index_post(sender, instance, **kwargs):
+    instance.indexing()  
