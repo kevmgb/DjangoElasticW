@@ -28,7 +28,7 @@ setup(
     install_requires=[
         # Should only have the most basic
         'Django>=1.11.22,<=2.2.2',
-        'djangorestframework==3.9.4',
+        'djangorestframework==3.11.2',
         'celery>=3.1.16',
         'psycopg2==2.8.3',
         'social-auth-app-django==3.1.0',
